@@ -46,7 +46,7 @@ set_time_limit(0);
    | protocol = 0 , you can use tcp, udp or icmp
    */
 $socket = socket_create(AF_INET, SOCK_STREAM, 0) or
-    die("Could not create socket" . PHP_EOL);
+die("Could not create socket" . PHP_EOL);
 
 
 /*
@@ -59,7 +59,7 @@ $socket = socket_create(AF_INET, SOCK_STREAM, 0) or
    */
 
 $result = socket_bind($socket, $host, $port) or
-    die("Could not bind to socket" . PHP_EOL);
+die("Could not bind to socket" . PHP_EOL);
 
 /*
    |--------------------------------------------------------------------------
@@ -71,5 +71,17 @@ $result = socket_bind($socket, $host, $port) or
    */
 
 $result = socket_listen($socket, 3) or
-    die("Could not setup socket listener" . PHP_EOL);
+die("Could not setup socket listener" . PHP_EOL);
+
+/*
+   |--------------------------------------------------------------------------
+   |   Accepts a connection on the socket
+   |--------------------------------------------------------------------------
+   | socket_accept ( resource $socket ) : resource
+   | accept incoming connections
+   | spawn another socket to handle communication
+   */
+
+$spawn = socket_accept($socket) or
+die("Could not accept incoming connection" . PHP_EOL);
 
