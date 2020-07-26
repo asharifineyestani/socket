@@ -48,3 +48,15 @@ set_time_limit(0);
 $socket = socket_create(AF_INET, SOCK_STREAM, 0)
 or die("Could not create socket" . PHP_EOL);
 
+
+/*
+   |--------------------------------------------------------------------------
+   |  Binds host and port to the socket
+   |--------------------------------------------------------------------------
+   | socket_bind ( resource $socket , string $address [, int $port = 0 ] ) : bool
+   | address = localhost
+   | port = custom port for example 25003
+   */
+
+$result = socket_bind($socket, $host, $port) or die("Could not bind to socket\n");
+
