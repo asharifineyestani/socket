@@ -45,8 +45,8 @@ set_time_limit(0);
    | type = SOCK_STREAM: Provides sequenced, reliable, full-duplex, connection-based byte streams. An out-of-band data transmission mechanism may be supported. The TCP protocol is based on this socket type.
    | protocol = 0 , you can use tcp, udp or icmp
    */
-$socket = socket_create(AF_INET, SOCK_STREAM, 0)
-or die("Could not create socket" . PHP_EOL);
+$socket = socket_create(AF_INET, SOCK_STREAM, 0) or
+    die("Could not create socket" . PHP_EOL);
 
 
 /*
@@ -58,5 +58,18 @@ or die("Could not create socket" . PHP_EOL);
    | port = custom port for example 25003
    */
 
-$result = socket_bind($socket, $host, $port) or die("Could not bind to socket\n");
+$result = socket_bind($socket, $host, $port) or
+    die("Could not bind to socket" . PHP_EOL);
+
+/*
+   |--------------------------------------------------------------------------
+   |  Listens for a connection on the socket
+   |--------------------------------------------------------------------------
+   | socket_listen ( resource $socket [, int $backlog = 0 ] ) : bool
+   | backlog = A maximum of backlog incoming connections will be queued for processing.
+   | for example we use 3
+   */
+
+$result = socket_listen($socket, 3) or
+    die("Could not setup socket listener" . PHP_EOL);
 
