@@ -21,7 +21,7 @@ set_time_limit(0);
 $host = "127.0.0.1";
 $port = 25003;
 $message = "Hello Mr Aghakhani";
-echo "Message To server : ".$message;
+echo "Message To server : " . $message;
 
 /*
    |--------------------------------------------------------------------------
@@ -60,5 +60,18 @@ die("Could not connect to server" . PHP_EOL);
    |
    */
 
-socket_write($socket, $message, strlen($message)) or die("Could not send data to server\n");
+socket_write($socket, $message, strlen($message)) or die("Could not send data to server" . PHP_EOL);
+/*
+   |--------------------------------------------------------------------------
+   |   Read the server message
+   |--------------------------------------------------------------------------
+   | socket_read ( resource $socket , int $length [, int $type = PHP_BINARY_READ ] ) : string
+   | length =  The maximum number of bytes read is specified by the length parameter
+   |
+   */
+$result = socket_read($socket, 1024) or
+die("Could not read server response" . PHP_EOL);
+
+echo PHP_EOL . "Reply From Server : " . $result;
+
 
