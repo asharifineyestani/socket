@@ -127,3 +127,17 @@ echo " Client Message : " . $input;
 $buffer = strtoupper($input) . PHP_EOL;
 
 socket_write($spawn, $buffer, strlen($buffer)) or die("Could not write output\n");
+
+/*
+   |--------------------------------------------------------------------------
+   |   Closes the socket resource
+   |--------------------------------------------------------------------------
+   | socket_close ( resource $socket ) : void
+   | socket_close() closes the socket resource given by socket.
+   | This function is specific to sockets and cannot be used on any other type of resources.
+   |
+   */
+
+socket_close($spawn);
+socket_close($socket);
+
