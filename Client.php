@@ -75,3 +75,15 @@ die("Could not read server response" . PHP_EOL);
 echo PHP_EOL . "Reply From Server : " . $result;
 
 
+/*
+   |--------------------------------------------------------------------------
+   |   Closes the socket resource
+   |--------------------------------------------------------------------------
+   | socket_close ( resource $socket ) : void
+   | socket_close() closes the socket resource given by socket.
+   | This function is specific to sockets and cannot be used on any other type of resources.
+   |
+   */
+
+socket_close($socket);
+
