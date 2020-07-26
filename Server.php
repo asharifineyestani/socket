@@ -103,3 +103,27 @@ $input = socket_read($spawn, 1024) or
 die("Could not read input". PHP_EOL);
 
 
+/*
+   |--------------------------------------------------------------------------
+   |   Write to the socket
+   |--------------------------------------------------------------------------
+   | socket_write ( resource $socket , string $buffer [, int $length = 0 ] ) : int
+   | buffer =  The buffer to be written.
+   | length =  The optional parameter length can specify an alternate length of bytes written to the socket.
+   |
+   |--------------------------------------------------------------------------
+   |
+   | we use trim to clean up input string
+   | Strip whitespace (or other characters) from the input
+   |
+   |--------------------------------------------------------------------------
+   | we use strtoupper() to react to the message
+   | we could to use strrev() or strtolower()
+   |
+   */
+
+$input = trim($input);
+echo " Client Message : " . $input;
+$buffer = strtoupper($input) . PHP_EOL;
+
+socket_write($spawn, $buffer, strlen($buffer)) or die("Could not write output\n");
