@@ -47,7 +47,18 @@ die("Could not create socket" . PHP_EOL);
    | port = custom port for example 25003
    |
    */
-$result = socket_connect($socket, $host, $port) or die("Could not connect to server\n");
+$result = socket_connect($socket, $host, $port) or
+die("Could not connect to server" . PHP_EOL);
 
+/*
+   |--------------------------------------------------------------------------
+   |   Write to the socket
+   |--------------------------------------------------------------------------
+   | socket_write ( resource $socket , string $buffer [, int $length = 0 ] ) : int
+   | buffer =  The buffer to be written.
+   | length =  The optional parameter length can specify an alternate length of bytes written to the socket.
+   |
+   */
 
+socket_write($socket, $message, strlen($message)) or die("Could not send data to server\n");
 
