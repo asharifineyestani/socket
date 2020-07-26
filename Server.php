@@ -117,14 +117,14 @@ die("Could not read input". PHP_EOL);
    | Strip whitespace (or other characters) from the input
    |
    |--------------------------------------------------------------------------
-   | we use strtoupper() to react to the message
-   | we could to use strrev() or strtolower()
+   | I use strrev() to react to the message
+   | you could to use strtoupper() or strtolower()
    |
    */
 
 $input = trim($input);
 echo " Client Message : " . $input;
-$buffer = strtoupper($input) . PHP_EOL;
+$buffer = strrev($input) . PHP_EOL;
 
 socket_write($spawn, $buffer, strlen($buffer)) or die("Could not write output\n");
 
