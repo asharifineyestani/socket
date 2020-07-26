@@ -22,6 +22,7 @@ $host = "127.0.0.1";
 $port = 25003;
 $message = "Hello Mr Aghakhani";
 echo "Message To server : ".$message;
+
 /*
    |--------------------------------------------------------------------------
    |  Create socket
@@ -32,5 +33,21 @@ echo "Message To server : ".$message;
    | protocol = 0 , you can use tcp, udp or icmp
    |
    */
+
 $socket = socket_create(AF_INET, SOCK_STREAM, 0) or
 die("Could not create socket" . PHP_EOL);
+
+
+/*
+   |--------------------------------------------------------------------------
+   |  Initiates a connection on the socket
+   |--------------------------------------------------------------------------
+   | socket_connect ( resource $socket , string $address [, int $port = 0 ] ) : bool
+   | address = localhost
+   | port = custom port for example 25003
+   |
+   */
+$result = socket_connect($socket, $host, $port) or die("Could not connect to server\n");
+
+
+
