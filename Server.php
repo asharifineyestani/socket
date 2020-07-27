@@ -42,29 +42,28 @@ class Server
 
     public function loop()
     {
-        while (1) {
+
+        $connection = 1;
+
+        while ($connection) {
             $input = socket_read($this->accepted, 1024) or
             die("Could not read input \n");
 
-            if ($input === "close") {
-                $this->close();
-                break;
-            }
-
-            if (!is_numeric($input)) {
-                echo 'message received';
-                $this->close("the input is not numeric");
+            if (trim($input) == ":q") {
+                $this->close("user exit successfully.");
             }
 
 
             $output = strrev($input);
-            echo 'message received';
             socket_write($this->accepted, $output, strlen($output)) or
             die("could not write output \n");
+
         }
+
+        $this->close();
     }
 
 }
 
-$socket = new Server(5562);
+$socket = new ServerClass(5502);
 $socket->loop();
