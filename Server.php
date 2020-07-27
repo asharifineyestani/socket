@@ -43,16 +43,13 @@ class Server
     public function loop()
     {
 
-        $connection = 1;
-
-        while ($connection) {
+        while (1) {
             $input = socket_read($this->accepted, 1024) or
             die("Could not read input \n");
 
             if (trim($input) == ":q") {
                 $this->close("user exit successfully.");
             }
-
 
             $output = strrev($input);
             socket_write($this->accepted, $output, strlen($output)) or
